@@ -88,7 +88,7 @@ public class FrmOrdenamiento extends JFrame {
 
         getContentPane().add(tbOrdenamiento, BorderLayout.NORTH);
 
-        JScrollPane spDocumentos=new JScrollPane(tblDocumentos);
+        JScrollPane spDocumentos = new JScrollPane(tblDocumentos);
         getContentPane().add(spDocumentos, BorderLayout.CENTER);
 
         String nombreArchivo = System.getProperty("user.dir")
@@ -108,6 +108,12 @@ public class FrmOrdenamiento extends JFrame {
     }
 
     private void btnOrdenarRapidoClick(ActionEvent evt) {
+        if (cmbCriterio.getSelectedIndex() >= 0) {
+            Util.iniciarCronometro();
+            Documento.ordenarRapido(0, Documento.documentos.size() - 1, cmbCriterio.getSelectedIndex());
+            txtTiempo.setText(Util.getTextoTiempoCronometro());
+            Documento.mostrarDatos(tblDocumentos);
+        }
     }
 
     private void btnOrdenarInsercionClick(ActionEvent evt) {

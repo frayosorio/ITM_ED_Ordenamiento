@@ -133,5 +133,26 @@ public class Documento {
         }
     }
 
+    private static int localizarPivote(int inicio, int fin, int criterio) {
+        int pivote = inicio;
+        Documento documentoP = documentos.get(pivote);
+        for (int i = inicio + 1; i <= fin; i++) {
+            if (esMayor(documentoP, documentos.get(i), criterio)) {
+                intercambiar(i, pivote);
+                pivote++;
+            }
+        }
+
+        return pivote;
+    }
+
+    public static void ordenarRapido(int inicio, int fin, int criterio) {
+        if (inicio >= fin) {
+            return;
+        }
+        int pivote = localizarPivote(inicio, fin, criterio);
+        ordenarRapido(inicio, pivote - 1, criterio);
+        ordenarRapido(pivote + 1, fin, criterio);
+    }
 
 }
