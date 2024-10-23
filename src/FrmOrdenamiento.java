@@ -121,7 +121,10 @@ public class FrmOrdenamiento extends JFrame {
     }
 
     private void btnBuscar(ActionEvent evt) {
-
+        if (cmbCriterio.getSelectedIndex() >= 0) {
+            ArbolBinario ab = Documento.getArbolBinario(cmbCriterio.getSelectedIndex());
+            ab.mostrar(tblDocumentos);
+        }
     }
 
 }

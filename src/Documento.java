@@ -38,6 +38,10 @@ public class Documento {
         return apellido1 + " " + apellido2 + " " + nombre;
     }
 
+    public boolean equals(Documento d) {
+        return getDocumento().equals(d.getDocumento()) && getNombreCompleto().equals(d.getNombreCompleto());
+    }
+
     // ********** Atributos y Metodos estaticos **********
     // Almacena la lista de documentos
     public static List<Documento> documentos = new ArrayList();
@@ -153,6 +157,15 @@ public class Documento {
         int pivote = localizarPivote(inicio, fin, criterio);
         ordenarRapido(inicio, pivote - 1, criterio);
         ordenarRapido(pivote + 1, fin, criterio);
+    }
+
+    public static ArbolBinario getArbolBinario(int criterio) {
+        ArbolBinario ab = new ArbolBinario();
+        ab.setCriterio(criterio);
+        for (Documento d : documentos) {
+            ab.agregarNodo(new Nodo(d));
+        }
+        return ab;
     }
 
 }
